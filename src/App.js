@@ -1,13 +1,9 @@
 import MUIDataTable from "mui-datatables";
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import { ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/material/styles";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import axios from 'axios';
+
 function App() {
   const [responsive, setResponsive] = useState("standard");
   const [tableBodyHeight, setTableBodyHeight] = useState("100%");
