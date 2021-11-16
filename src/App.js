@@ -1,5 +1,5 @@
 import MUIDataTable from "mui-datatables";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/material/styles";
@@ -7,24 +7,25 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-
+import axios from 'axios';
 function App() {
   const [responsive, setResponsive] = useState("standard");
   const [tableBodyHeight, setTableBodyHeight] = useState("100%");
   const [tableBodyMaxHeight, setTableBodyMaxHeight] = useState("");
   const [searchBtn, setSearchBtn] = useState(true);
-  const [downloadBtn, setDownloadBtn] = useState(true);
-  const [printBtn, setPrintBtn] = useState(true);
+  const [downloadBtn, setDownloadBtn] = useState(false);
+  const [printBtn, setPrintBtn] = useState(false);
   const [viewColumnBtn, setViewColumnBtn] = useState(true);
-  const [filterBtn, setFilterBtn] = useState(true);
+  const [filterBtn, setFilterBtn] = useState(false); 
+  const [data, setData] = useState([]);
+
 
   const columns = [
     { name: "Nombre", options: { filterOptions: { fullWidth: true } } },
     "Alias",
-    "Teléfono",
     "Dirección",
-    "Correo",
     "Referencias",
+    "Teléfono",
     //Link
     {
       name: "Ubicación",
@@ -33,6 +34,7 @@ function App() {
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
             <a href={value}>Click</a>
+            
           );
         }
       }
@@ -49,34 +51,32 @@ function App() {
     responsive,
     tableBodyHeight,
     tableBodyMaxHeight,
+    //Max rows visible
+    rowsPerPage: 100,
     onTableChange: (action, state) => {
       console.log(action);
       console.dir(state);
     }
+
   };
- // Nombre,     Alias,      Telefono,Direccion,Correo,Referencias,Ubicacion
-  const data = [
-    ["Angelica", "Purificadora", null, "Ferrosquilla", null,"Purificadora de Ferrosquilla","https://goo.gl/maps/GP4kHEnjc43FEt9H8"],
-    [
-      "Aiden Lloyd",
-      "Business Consultant for an International Company and CEO of Tony's Burger Palace",
-      "Dallas"
-    ],
-    ["Jaden Collins", "Attorney", "Santa Ana"],
-    ["Aaren Rose", null, "Toledo"],
-    ["Johnny Jones", "Business Analyst", "St. Petersburg"],
-    ["Jimmy Johns", "Business Analyst", "Baltimore"],
-    ["Jack Jackson", "Business Analyst", "El Paso"],
-    ["Joe Jones", "Computer Programmer", "El Paso"],
-    ["Jacky Jackson", "Business Consultant", "Baltimore"],
-    ["Jo Jo", "Software Developer", "Washington DC"],
-    ["Franky Rees", "Business Analyst", "St. Petersburg"],
-    ["Donna Marie", "Business Manager", "Annapolis"]
-  ];
+  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    const fetchData = async () => {
+      const {data} = await axios.get('https://azaderos-rest-service.herokuapp.com/api/clientes');
+      const {clientes} = data;
+      const dataLocal = [];
+      clientes.map( ({nombre,sobrenombre,direccion,referencias,telefono,ubicacion} ) => {
+        dataLocal.push([nombre,sobrenombre,direccion,referencias,telefono,ubicacion]);
+      });
+      setData(dataLocal);
+    };
+    fetchData();
+  }, []);
 
   return (
     <ThemeProvider theme={createTheme()}>
-      {/* <FormControl>
+      <FormControl>
         <InputLabel id="demo-simple-select-label">Responsive Option</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -95,8 +95,8 @@ function App() {
           </MenuItem>
           <MenuItem value={"stacked"}>stacked (deprecated)</MenuItem>
         </Select>
-      </FormControl> */}
-      {/* <FormControl>
+      </FormControl>
+       <FormControl>
         <InputLabel id="demo-simple-select-label">Table Body Height</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -141,8 +141,8 @@ function App() {
           <MenuItem value={"false"}>{"false"}</MenuItem>
           <MenuItem value={"disabled"}>disabled</MenuItem>
         </Select>
-      </FormControl> */}
-      {/* <FormControl>
+      </FormControl> 
+      /* <FormControl>
         <InputLabel id="demo-simple-select-label">Download Button</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -155,8 +155,8 @@ function App() {
           <MenuItem value={"false"}>{"false"}</MenuItem>
           <MenuItem value={"disabled"}>disabled</MenuItem>
         </Select>
-      </FormControl> */}
-      {/* <FormControl>
+      </FormControl>
+      <FormControl>
         <InputLabel id="demo-simple-select-label">Print Button</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -169,8 +169,8 @@ function App() {
           <MenuItem value={"false"}>{"false"}</MenuItem>
           <MenuItem value={"disabled"}>disabled</MenuItem>
         </Select>
-      </FormControl> */}
-      {/* <FormControl>
+      </FormControl>
+      <FormControl>
         <InputLabel id="demo-simple-select-label">
           View Column Button
         </InputLabel>
@@ -185,8 +185,8 @@ function App() {
           <MenuItem value={"false"}>{"false"}</MenuItem>
           <MenuItem value={"disabled"}>disabled</MenuItem>
         </Select>
-      </FormControl> */}
-      {/* <FormControl>
+      </FormControl>
+      <FormControl>
         <InputLabel id="demo-simple-select-label">Filter Button</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -199,14 +199,14 @@ function App() {
           <MenuItem value={"false"}>{"false"}</MenuItem>
           <MenuItem value={"disabled"}>disabled</MenuItem>
         </Select>
-      </FormControl> */}
-      <MUIDataTable
+      </FormControl>
+       <MUIDataTable
         title={"Clientes Azaderos"}
         data={data}
         columns={columns}
         options={options}
       />
-    </ThemeProvider>
+    </ThemeProvider> 
   );
 }
 
