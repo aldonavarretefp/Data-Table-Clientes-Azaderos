@@ -21,7 +21,19 @@ function App() {
     "Alias",
     "Dirección",
     "Referencias",
-    "Teléfono",
+    
+    {
+      name: "Teléfono",
+      options: {
+        filter: false,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <a href={`tel:${value}`} >Llamar</a>
+            
+          );
+        }
+      }
+    },
     //Link
     {
       name: "Ubicación",
