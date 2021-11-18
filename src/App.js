@@ -29,12 +29,25 @@ function App() {
         filter: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
-            <a href={value}>Click</a>
+            <a target="_blank" href={value}  rel="noopener noreferrer" align="center">Click</a>
             
           );
         }
       }
     },
+    //Img
+    {
+      name: "Imagen",
+      options: {
+        filter: false,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <a href={value} align="center" target="_blank"  rel="noopener noreferrer">Img</a>
+          );
+        }
+      }
+        
+    }
   ];
 
   const options = {
@@ -49,6 +62,9 @@ function App() {
     tableBodyMaxHeight,
     //Max rows visible
     rowsPerPage: 100,
+    //Non-selectable rows
+    selectableRows: "none",
+
     onTableChange: (action, state) => {
       console.log(action);
       console.dir(state);
@@ -62,8 +78,8 @@ function App() {
       const {data} = await axios.get('https://azaderos-rest-service.herokuapp.com/api/clientes');
       const {clientes} = data;
       const dataLocal = [];
-      clientes.map( ({nombre,sobrenombre,direccion,referencias,telefono,ubicacion} ) => {
-        dataLocal.push([nombre,sobrenombre,direccion,referencias,telefono,ubicacion]);
+      clientes.map( ({nombre,sobrenombre,direccion,referencias,telefono,ubicacion,img} ) => {
+        dataLocal.push([nombre,sobrenombre,direccion,referencias,telefono,ubicacion,img]);
       });
       setData(dataLocal);
     };
