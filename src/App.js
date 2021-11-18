@@ -27,10 +27,17 @@ function App() {
       options: {
         filter: false,
         customBodyRender: (value, tableMeta, updateValue) => {
+          //Si hay valor, se muestra el valor, sino, se muestra un input
           return (
-            <a href={`tel:${value}`} >Llamar</a>
-            
-          );
+            <div>
+              {value!=="Sin_telefono" ? (
+                <a href={`tel:${value}`}>Llamar</a>
+              ) : (
+                <span>No numero</span>
+              )
+          }
+            </div>
+          )
         }
       }
     },
@@ -54,6 +61,7 @@ function App() {
         filter: false,
         customBodyRender: (value, tableMeta, updateValue) => {
           return (
+            
             <a href={value} align="center" target="_blank"  rel="noopener noreferrer">Img</a>
           );
         }
