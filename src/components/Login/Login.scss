@@ -1,0 +1,59 @@
+#login-container{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right:20px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    #login-paper{
+            padding: 20px;
+            margin: 20px;
+            height: 80vh;
+            width: 50vw;
+            text-align: center;
+            //shadow
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+            .login-icon{
+                transform: scale(1.8);
+                background-color: rgb(255, 0, 0);
+                border-radius: 70px;
+                padding: 5px;
+            }
+            #login-button{
+                margin-top: 20px;
+                margin-bottom: 20px;
+                margin-right: 30px;
+                margin-left: 20px;
+                background-color: rgb(255, 0, 0);
+                color: white;
+                border-radius: 20px;
+                padding: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                width: 80%;
+                &:hover{
+                    background-color: rgb(97, 30, 30);
+                    color: white;
+                }
+            }
+            .standard-basic{
+                font-size: 20px;
+                font-weight: bold;
+                width: 90%;
+                margin-bottom: 20px;
+            }
+    }
+    //For <768 px screen
+    //make the login-paper margin smaller
+
+    @media screen and (max-width: 768px){
+        #login-paper{
+            margin: 0px;
+            padding: 20px;
+            width: 90vw;
+            margin-top: 20px;
+        }
+    }
+}
