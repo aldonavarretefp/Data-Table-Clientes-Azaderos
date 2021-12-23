@@ -106,7 +106,7 @@ export const Table = () => {
         }catch(error){
             console.log(error);
         }
-    });
+    },[location.state.authenticated, navigate]);
     
     
     
