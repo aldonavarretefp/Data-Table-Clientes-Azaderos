@@ -1,0 +1,10 @@
+// Variables sass
+$mainColor: #0d1b2a;
+
+$width: 982px;
+
+@mixin mobile{
+    @media (max-width: #{$width}) {
+        @content
+    }
+}

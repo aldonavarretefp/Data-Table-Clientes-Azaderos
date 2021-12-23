@@ -1,0 +1,20 @@
+/**
+ * Image containig the text inside the intro
+ */
+
+.intro-container{
+  background: url("../../img/pexels-malidate-van-769289.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  font-size: 2.5rem;
+  padding: 0;
+  margin: 0;
+}

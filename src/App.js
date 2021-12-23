@@ -1,43 +1,42 @@
-import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import React from "react";
 
-//React-Router
+//React-Router, Protected Route
 import {
-  BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  Navigate,
 } from "react-router-dom";
+
 
 //Styles
 import "./App.scss";
 //Landing
 import Landing from "./components/Landing/Landing";
-import { Table } from './components/Table/Table';
-import Login from './components/Login/Login';
+import { Table } from "./components/Table/Table";
+import Login from "./components/Login/Login";
+import { Intro } from './components/Intro/Intro';
+import { Ubicacion } from './components/Ubicacion/Ubicacion';
 
 function App() {
-  
   return (
-    <Router>
+    <div>
       <Routes>
-        <Route path="/" 
-        element={
-          <Login/>
-        } 
-        />
-        <Route path="/home"
-          element={
-            <Landing/>
-          }
-        />
-        <Route exact path="/clientes"
-          element={
-            <Table/>
-          }
-        />
+        {/* Ruta padre */}
+        <Route path="/" element={<Landing />} >
+          <Route index path="/" element={<Intro />} />
+          <Route path="ubicacion" element={<Ubicacion />} />
+        </Route>
+
+        <Route exact path="/login" element={<Login />} />
+        <Route path="/clientes" element={<Table/>}/>
+        
+        <Route path="*" element={<Navigate replace to="/" />} />
+
       </Routes>
-    </Router>
+      
+    </div>
   );
 }
+
 
 export default App;

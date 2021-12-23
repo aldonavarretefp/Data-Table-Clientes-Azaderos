@@ -1,25 +1,37 @@
 #login-container{
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right:20px;
-    margin-bottom: 20px;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
+    background-image: url('../../img/pexels-photo-5774154.jpeg');
+    //cover all the screen
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
     #login-paper{
             padding: 20px;
             margin: 20px;
             height: 80vh;
             width: 50vw;
             text-align: center;
+            max-width: 30vw;
             //shadow
             box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            h1{
+                font-size: 3.6rem;
+                font-weight: bold;
+            }
             .login-icon{
                 transform: scale(1.8);
                 background-color: rgb(255, 0, 0);
                 border-radius: 70px;
                 padding: 5px;
+
             }
             #login-button{
                 margin-top: 20px;
@@ -50,10 +62,11 @@
 
     @media screen and (max-width: 768px){
         #login-paper{
-            margin: 0px;
-            padding: 20px;
-            width: 90vw;
-            margin-top: 20px;
+            margin: 10px;
+            width: auto;
+            h1{
+                font-size: 2.4rem;
+            }
         }
     }
 }
