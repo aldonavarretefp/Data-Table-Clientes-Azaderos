@@ -18,7 +18,8 @@ const url = 'https://azaderos-rest-service.herokuapp.com/api/clientes';
 
 const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.target);
+    //If it is empty do not do anything
+    let data = new FormData(event.target);
     const nombre = data.get('nombre');
     const sobrenombre = data.get('sobrenombre');
     const mz = data.get('mz');
@@ -27,18 +28,26 @@ const handleSubmit = async (event) => {
     const referencias = data.get('referencias');
     const telefono = data.get('telefono');
     let direccion = `${calle} mz ${mz} lt ${lt}`;    
+    //si no hay nombre o no hay mz o no hay lt o no hay calle 
+    // no hagas el post
+    
     try{
-        const {data} = await axios.post(url,{
-            //Si no hay nombre, "Sin_nombre"
-            nombre: nombre ? nombre : "Sin_nombre",
-            sobrenombre: sobrenombre ? sobrenombre : null,
-            direccion: direccion ? direccion : "Sin_direccion",
-            referencias: referencias ? referencias : "",
-            telefono: telefono ? telefono : "Sin_telefono",
-            
-        });
-        console.log(data);
-        alert('Cliente creado');
+        
+        if(nombre && mz && lt && calle){
+
+            const {data:newdata} = await axios.post(url,{
+                nombre: nombre ? nombre : "Sin_nombre",
+                sobrenombre: sobrenombre ? sobrenombre : null,
+                direccion: direccion ? direccion : "Sin_direccion",
+                referencias: referencias ? referencias : "",
+                telefono: telefono ? telefono : "Sin_telefono",
+            });
+            console.log(newdata);
+            alert('Cliente creado');
+        }else{
+            alert('Faltan datos');
+        }
+
     }catch(error){
         console.log(error);
     }
@@ -95,34 +104,35 @@ export const Table = () => {
             const dataLocal = [];
             clientes.map( ({ nombre, sobrenombre, direccion, referencias, telefono, ubicacion, img }) => (
                 dataLocal.push([nombre, sobrenombre, direccion, referencias, telefono, ubicacion, img])
-            ));
-            setData(dataLocal);
-            if(location.state.authenticated){
-                setAuthenticated(true);
-            }
-            else{
-                navigate('/login');
-            }
+                ));
+                setData(dataLocal);
+                if(location.state.authenticated){
+                    setAuthenticated(true);
+                }else{
+                    if(!authenticated){
+                        navigate('/login', { state: { from: location }, replace: true });
+                    }
+                    navigate('/login');
+                }
         }catch(error){
             console.log(error);
         }
-    },[location.state.authenticated, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
     
     
     
     return (
-        !authenticated ? ( <div>Usuario no ha iniciado sesión...</div> )
+        !authenticated 
+        ? (
+            <div>Usuario no ha iniciado sesión...</div> 
+        )
         : (
+            //If user is admin show the table
+            
             <div>
                 <h1>Bienvenido {location.state.nombre}</h1>
-                <ThemeProvider theme={createTheme()}>
-                    <MUIDataTable
-                    title={"Clientes Azaderos"}
-                    data={data}
-                    columns={columns}
-                    options={options}
-                    />
-                </ThemeProvider> 
+                <h2>Crear Cliente</h2>
                 <div className="form-container">
                     <form onSubmit={handleSubmit} >
                         <label>
@@ -156,6 +166,14 @@ export const Table = () => {
                         <input className="button" type="submit" value="Submit"/>
                     </form>
                 </div>
+                <ThemeProvider theme={createTheme()}>
+                    <MUIDataTable
+                    title={"Clientes Azaderos"}
+                    data={data}
+                    columns={columns}
+                    options={options}
+                    />
+                </ThemeProvider> 
             </div>
         )
     )
