@@ -7,7 +7,7 @@ export const Intro = () => {
 
         <div className="intro-container">
             
-            <h1>Llevando alegría a los hogares</h1>
+            {/* <h1>Llevando alegría a los hogares</h1> */}
         </div>
     )
 }

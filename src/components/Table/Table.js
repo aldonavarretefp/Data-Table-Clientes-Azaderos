@@ -128,8 +128,6 @@ export const Table = () => {
             <div>Usuario no ha iniciado sesión...</div> 
         )
         : (
-            //If user is admin show the table
-            
             <div>
                 <h1>Bienvenido {location.state.nombre}</h1>
                 <h2>Crear Cliente</h2>

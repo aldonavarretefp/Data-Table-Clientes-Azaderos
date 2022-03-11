@@ -13,15 +13,16 @@ const Landing = () => {
             <section>
                 <Outlet />
             </section>            
+            
+            {/* 
             <div>
                 Hola
-                {/* Exact path */}
                 <Link
                     to="ubicacion"
                     className="btn btn-primary"
                 >Ubicacion</Link>
             </div>
-
+            */}
             
         </div>
         

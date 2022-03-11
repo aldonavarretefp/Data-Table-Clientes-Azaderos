@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './Navbar.scss';
+import { Link } from 'react-router-dom';
 
 /**
  * Productos
@@ -12,17 +13,23 @@ import './Navbar.scss';
  */
 export const Navbar = () => {
     return (
-        <div className="topBar">
-            <div className="wrapper">
-                <div className="left">
-                    <a href="/" className="logo">Azaderos</a> 
-                </div>
-                
-                {/* Right */}
-                <div className="right">
-                    
-                </div>
-            </div>
-        </div>
+        <nav className="navbar">
+            <div className="navbar-logo" >Azaderos</div>
+            <ul>
+                <li className="navbar-item active"><Link to="ubicacion" className="navbar-link">Productos</Link></li>
+                <li className="navbar-item">Sobre Nosotros</li>
+                <li className="navbar-item">Contacto</li>
+                <li className="navbar-item">Como llegar</li>
+                <li className="navbar-item">Precios</li>
+                <li className="navbar-item">Hazte Cliente</li>
+            </ul>
+
+            <button className="hamburger hamburger--collapse" type="button">
+                <span className="hamburger-box">
+                    <span className="hamburger-inner"></span>
+                </span>
+            </button>
+
+        </nav>
     )
 }

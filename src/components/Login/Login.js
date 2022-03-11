@@ -31,7 +31,7 @@ const Login = () => {
         const { email, password } = e.target;
 
         axios.post(`${url}/api/auth/login`,
-             { email: email.value, password: password.value }
+            { email: email.value, password: password.value }
         )
         .then(res => {
             const { token } = res.data;

@@ -23,17 +23,14 @@ function App() {
       <Routes>
         {/* Ruta padre */}
         <Route path="/" element={<Landing />} >
-          <Route index path="/" element={<Intro />} />
+          {/* <Route index path="/" element={<Intro />} /> */}
           <Route path="ubicacion" element={<Ubicacion />} />
         </Route>
-
         <Route exact path="/login" element={<Login />} />
         <Route path="/clientes" element={<Table/>}/>
         
         <Route path="*" element={<Navigate replace to="/" />} />
-
       </Routes>
-      
     </div>
   );
 }
