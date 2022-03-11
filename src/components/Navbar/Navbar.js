@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import './Navbar.scss';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,7 @@ import { Link } from 'react-router-dom';
  */
 export const Navbar = () => {
     return (
+<<<<<<< HEAD
         <nav className="navbar">
             <div className="navbar-logo" >Azaderos</div>
             <ul>
@@ -31,5 +33,22 @@ export const Navbar = () => {
             </button>
 
         </nav>
+=======
+        <div className="topBar">
+            <div className="wrapper">
+                <div className="left">
+                    <a href="/" className="logo">Azaderos</a> 
+                </div>
+                
+                {/* Right */}
+                <div className="right">
+                    <ul className='nav-links'>
+                        <Link to="ubicacion" clasName='nav-link'>Ubicacion</Link>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+>>>>>>> 882ae33020184339f801972cb3106b5607402a0d
     )
 }

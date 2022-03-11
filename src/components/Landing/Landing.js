@@ -13,16 +13,25 @@ const Landing = () => {
             <section>
                 <Outlet />
             </section>            
+<<<<<<< HEAD
             
             {/* 
             <div>
+=======
+            <p>
+>>>>>>> 882ae33020184339f801972cb3106b5607402a0d
                 Hola
                 <Link
                     to="ubicacion"
                     className="btn btn-primary"
                 >Ubicacion</Link>
+<<<<<<< HEAD
             </div>
             */}
+=======
+            </p>
+
+>>>>>>> 882ae33020184339f801972cb3106b5607402a0d
             
         </div>
         

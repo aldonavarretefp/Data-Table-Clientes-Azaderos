@@ -66,7 +66,7 @@ const Login = () => {
                         style={{ color: 'white' }}
                     />
                     <h1>¡Hola!</h1>
-                    <h1>Bienvenido de Nuevo.</h1>
+                    <h2>Bienvenido de Nuevo.</h2>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <TextField 
