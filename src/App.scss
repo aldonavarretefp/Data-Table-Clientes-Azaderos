@@ -7,11 +7,11 @@ html {
     width: 100vw;
     height: 100vh;
     font-family: 'Josefin Sans', sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 } 
 body {
     min-height: 100%;
     width: 100%;
     margin: 0 auto;
 }
-// -webkit-font-smoothing: antialiased;
-// -moz-osx-font-smoothing: grayscale;

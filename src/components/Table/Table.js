@@ -128,7 +128,7 @@ export const Table = () => {
             <div>Usuario no ha iniciado sesión...</div> 
         )
         : (
-            <div>
+            <div >
                 <h1>Bienvenido {location.state.nombre}</h1>
                 <h2>Crear Cliente</h2>
                 <div className="form-container">
